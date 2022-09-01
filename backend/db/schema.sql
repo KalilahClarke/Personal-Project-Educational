@@ -1,20 +1,14 @@
-DROP DATABASE IF EXISTS rock_star;
-CREATE DATABASE rock_star; 
+DROP DATABASE IF EXISTS echoes_journal;
+CREATE DATABASE echoes_journal; 
 
-\c rock_star; 
+\c echoes_journal; 
 
 
 
-CREATE TABLE rocks(
+CREATE TABLE journal(
   id SERIAL PRIMARY KEY,
+  date TEXT NOT NULL,
   name TEXT NOT NULL,
-  type TEXT NOT NULL,
-  color TEXT NOT NULL,
-  luster TEXT NOT NULL,
-  hardness INT,
-  streak TEXT NOT NULL,
-  breakage TEXT NOT NULL,
-  magnetic BOOLEEN false,
-  image TEXT
-  info TEXT NOT NULL,
+  image TEXT,
+  entryInfo TEXT NOT NULL
 )
