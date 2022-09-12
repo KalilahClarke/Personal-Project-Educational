@@ -1,13 +1,15 @@
 const express = require('express');
 const cors = require('cors');
+
 const app = express();
+const journalController = require('./controllers/journalcontroller.js');
+
 
 app.use(cors());
 app.use(express.json());
 
-const journalController = require('/controllers/journalcontroller.js');
-const { response } = require('express');
-app.use('/journal', journalController);
+
+app.use('/entries', journalController);
 
 app.get('/', (request, response) => {
     response.send('Welcome to Your Personal Journal')

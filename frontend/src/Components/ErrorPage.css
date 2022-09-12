@@ -1,0 +1,12 @@
+.error{
+    text-align: center;
+    height: 630px;
+
+    overflow: scroll;
+}
+
+.errorpic{
+    height: 620px;
+    width:auto;
+    text-align:center
+}

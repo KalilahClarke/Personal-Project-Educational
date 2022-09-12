@@ -8,6 +8,8 @@ const {
   updateEntry,
 } = require("../queries/entry.js");
 
+
+
 journal.get("/", async (req, res) => {
   const allEntries = await getAllEntries();
   if (allEntries[0]) {
@@ -30,9 +32,10 @@ journal.get("/:id", async (req, res) => {
 });
 
 journal.post("/", async (req, res) => {
+  
   try {
-    const journal = await createEntry(req.body);
-    res.json(journal);
+    const entry = await createEntry(req.body);
+    res.json(entry);
   } catch (error) {
     return error;
   }
@@ -49,7 +52,7 @@ journal.delete("/:id", async (req, res) => {
 });
 
 journal.put("/:id", async (req, res) => {
-  const [id] = req.params;
+  const {id} = req.params;
   const updatedEntry = await updateEntry(req.body, id);
   if (updatedEntry.id) {
     res.status(200).json(updatedEntry);

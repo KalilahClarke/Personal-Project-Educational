@@ -1,7 +1,6 @@
-const { all } = require('../app');
 const db = require('../db/dbConfig.js');
 
-const getAllEntries = async() =>{
+const getAllEntries = async () =>{
     try{
         const allEntries = await db.any('SELECT * FROM journal');
         console.log(allEntries)
@@ -11,7 +10,7 @@ const getAllEntries = async() =>{
     }
 };
 
-const getEntry = async(id) =>{
+const getEntry = async (id) =>{
     try{
         const oneEntry = await db.one('SELECT * FROM journal WHERE id=$1',id);
         return oneEntry
@@ -21,11 +20,11 @@ const getEntry = async(id) =>{
 }
 
 const createEntry = async(entry) =>{
-    const { date, name, image, entryInfo } = journal
+    const { date, name, start_time, end_time, image, entry_info } = entry
     try{
         const newEntry = await db.one(
-            'INSERT INTO journals ( date, name, image, entryInfo ) VALUES ($1, $2, $3, $4) RETURNING *',
-            [date, name, image, entryInfo]
+            'INSERT INTO journal ( date, name, start_time, end_time, image, entry_info ) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
+            [date, name, start_time, end_time, image, entry_info]
         );
         console.log('create successful')
         return newEntry
@@ -36,11 +35,11 @@ const createEntry = async(entry) =>{
 }
 
 const updateEntry = async(entry, id) =>{
-    const {date, name, image, entryInfo} = entry
+    const {date, name, start_time, end_time, image, entry_info} = entry
     try{
         const updatedEntry = await db.one(
-            'UPDATE journal SET date = $1, name = $2, image = $3, entryInfo = $4 WHERE id = $5 RETURNING *',
-            [date, name, image, entryInfo, id]
+            'UPDATE journal SET date = $1, name = $2, start_time = $3, end_time =$4,image = $5, entry_info = $6 WHERE id = $7 RETURNING *',
+            [date, name, start_time, end_time, image, entry_info, id]
         )
         return updatedEntry
     }catch(error){

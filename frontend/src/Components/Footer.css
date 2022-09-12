@@ -1,0 +1,15 @@
+footer{
+    background-color:rgb(44, 41, 41);
+    color:rgb(124, 168, 255);
+    height: 100px;
+    margin: auto;
+    text-align: center;
+}
+
+img{
+   height: 60px;
+   padding: 0px 20px
+}
+.info{
+    padding-top: 10px;
+}
